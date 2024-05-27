@@ -1,0 +1,20 @@
+{
+    // Extiende la configuración base de ESLint de Airbnb, que incluye un conjunto de reglas de estilo y mejores prácticas.
+    "extends": "airbnb-base",
+    
+    // Define los entornos en los que el código se ejecutará. Esto ayuda a ESLint a reconocer variables globales propias de estos entornos.
+    "env": {
+        // Permite el uso de variables globales de Jest, un framework de pruebas.
+        "jest": true,
+        
+        // Permite el uso de variables globales de Node.js.
+        "node": true
+    },
+    
+    // Personaliza o sobrescribe reglas específicas de ESLint.
+    "rules": {
+        // Configura la regla 'max-len' para advertir (nivel 1) cuando las líneas excedan los 120 caracteres.
+        // También establece un ancho de tabulación de 2 espacios y hace que ESLint ignore los comentarios al verificar la longitud de las líneas.
+        "max-len": [1, 120, {"tabWidth": 2, "ignoreComments": true}]
+    }
+}

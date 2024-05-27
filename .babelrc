@@ -1,0 +1,4 @@
+{
+    // Utiliza el preset "@babel/preset-env" de Babel, que permite compilar el código ES6+ a una versión compatible con entornos más antiguos.
+    "presets": ["@babel/preset-env"]
+}
