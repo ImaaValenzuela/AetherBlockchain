@@ -15,16 +15,18 @@
     "nodemon": "^3.1.1"
   },
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "babel-node ./src/service/index.js",
     "nodemon": "nodemon --exec yarn start",
     "lint": "eslint index.js src",
     "test": "jest",
-    "test:watch" : "jest --watchAll"
+    "test:watch": "jest --watchAll"
   },
   "dependencies": {
-    "crypto-js": "^4.2.0"
+    "body-parser": "^1.20.2",
+    "crypto-js": "^4.2.0",
+    "express": "^4.19.2"
   },
-  "jest":{
+  "jest": {
     "silent": true,
     "verbose": true,
     "testEnvironment": "node"
