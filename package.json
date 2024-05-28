@@ -27,6 +27,6 @@
   "jest":{
     "silent": true,
     "verbose": true,
-    "testEnviroment": "node"
+    "testEnvironment": "node"
   }
 }

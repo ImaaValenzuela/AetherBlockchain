@@ -5,7 +5,7 @@ class Block{
         this.timestamp = timestamp;
         this.previousHash = previousHash;
         this.hash = hash;
-        this.data = "935";
+        this.data = data;
     }
 
     static get genesis(){
