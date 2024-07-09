@@ -1,12 +1,12 @@
-import Block from "./block";
-import validate from "./modules/validate";
+import Block from './block';
+import validate from './modules/validate';
 
 class Blockchain {
-    constructor(){
+    constructor() {
         this.blocks = [Block.genesis];
     }
 
-    addBlock(data){
+    addBlock(data) {
         const previousBlock = this.blocks[this.blocks.length - 1];
         const block = Block.mine(previousBlock, data);
 
@@ -15,13 +15,12 @@ class Blockchain {
         return block;
     }
 
-    replace(newBlocks = []){
-        if(newBlocks.length < this.blocks.length) throw Error('Received chain is not longer than current chain.');
-
-        try{
-            validate(newBlocks);
-        } catch (error){
-            throw Error('Received chain is invalid.')
+    replace(newBlocks = []) {
+        if (newBlocks.length < this.blocks.length) throw Error('Received chain is not longer than current chain.');
+        try {
+        validate(newBlocks);
+        } catch (error) {
+        throw Error('Received chain is invalid');
         }
 
         this.blocks = newBlocks;

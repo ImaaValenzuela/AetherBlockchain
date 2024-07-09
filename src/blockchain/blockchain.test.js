@@ -1,5 +1,5 @@
-import Blockchain from "./blockchain";
-import Block from "./block";
+import Blockchain from './blockchain';
+import Block from './block';
 
 describe('Blockchain', () => {
     let blockchain;
@@ -10,7 +10,7 @@ describe('Blockchain', () => {
         blockchainB = new Blockchain();
     });
 
-    it('every blockchain has a genesis block', () =>{
+    it('every blockchain has a genesis blockchain', () => {
         const [genesisBlock] = blockchain.blocks;
 
         expect(genesisBlock).toEqual(Block.genesis);
@@ -18,7 +18,7 @@ describe('Blockchain', () => {
     });
 
     it('use addBlock()', () => {
-        const data = '935';
+        const data = 'd4t4';
         blockchain.addBlock(data);
 
         const [, lastBlock] = blockchain.blocks;
@@ -26,27 +26,27 @@ describe('Blockchain', () => {
         expect(blockchain.blocks.length).toEqual(2);
     });
 
-    it('Replaces the chain with a valid chain', () =>{
+    it('replaces the chain with a valid chain', () => {
         blockchainB.addBlock('bl4ck-1');
         blockchain.replace(blockchainB.blocks);
 
         expect(blockchain.blocks).toEqual(blockchainB.blocks);
     });
 
-    it('Does not replace the chain with one with less blocks', () =>{
-        blockchain.addBlock('bl4ck-1');
-
-        expect(()=>{
-            blockchain.replace(blockchainB.blocks);
-        }).toThrowError('Received chain is not longer than current chain')
-    });
-
-    it('Does not replace the chain with one is not valid.', () =>{
-        blockchainB.addBlock('block-1');
-        blockchainB.blocks[1].data = 'h4cked';
+    it('does not replace the chain with one with less blocks', () => {
+        blockchain.addBlock('block-1');
 
         expect(() => {
-            blockchain.replace(blockchainB.blocks)
-        }).toThrowError('Received chain is invalid')
+        blockchain.replace(blockchainB.blocks);
+        }).toThrowError('Received chain is not longer than current chain.');
     });
-})
+
+    it('not replace the chain with one is not valid', () => {
+        blockchainB.addBlock('block-1');
+        blockchainB.blocks[1].data = 'block-h4ck';
+
+        expect(() => {
+        blockchain.replace(blockchainB.blocks);
+        }).toThrowError('Received chain is invalid');
+    });
+});
