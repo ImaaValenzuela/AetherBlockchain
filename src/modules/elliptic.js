@@ -7,6 +7,6 @@ export default {
     createKeyPair: () => ec.genKeyPair(),
 
     verifySignature: (publicKey, signature, data) => {
-        return ec.keyFromPublic(publicKey, 'hex').verify(hash(data), signature)
+        return ec.keyFromPublic(publicKey, 'hex').verify(hash(data), signature);
     },
-}
+};
