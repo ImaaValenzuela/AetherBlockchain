@@ -5,6 +5,7 @@ const peers = PEERS ? PEERS.split(',') : [];
 const MESSAGE = {
     BLOCKS: 'blocks',
     TX: 'transaction',
+    WIPE: 'wipe_memorypool',
 };
 
 class P2PService {
@@ -18,8 +19,8 @@ class P2PService {
         server.on('connection', (socket) => this.onConnection(socket));
 
         peers.forEach((peer) => {
-            const socket = new WebSocket(peer);
-            socket.on('open', () => this.onConnection(socket));
+        const socket = new WebSocket(peer);
+        socket.on('open', () => this.onConnection(socket));
         });
 
         console.log(`Service ws:${P2P_PORT} listening...`);
@@ -31,15 +32,16 @@ class P2PService {
         console.log('[ws:socket] connected.');
         this.sockets.push(socket);
         socket.on('message', (message) => {
-            const { type, value } = JSON.parse(message);
+        const { type, value } = JSON.parse(message);
 
-            try {
-                if (type === MESSAGE.BLOCKS) blockchain.replace(value);
-                else if (type === MESSAGE.TX) blockchain.memoryPool.addOrUpdate(value);
-            } catch (error) {
-                console.log(`[ws:message] error ${error}`);
-                throw Error(error);
-            }
+        try {
+            if (type === MESSAGE.BLOCKS) blockchain.replace(value);
+            else if (type === MESSAGE.TX) blockchain.memoryPool.addOrUpdate(value);
+            else if (type === MESSAGE.WIPE) blockchain.memoryPool.wipe();
+        } catch (error) {
+            console.log(`[ws:message] error ${error}`);
+            throw Error(error);
+        }
         });
 
         socket.send(JSON.stringify({ type: MESSAGE.BLOCKS, value: blockchain.blocks }));
