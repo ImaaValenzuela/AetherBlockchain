@@ -25,7 +25,7 @@ describe('Transaction', () => {
         expect(output.amount).toEqual(amount);
     });
 
-    describe('transacting with an amount that exceeds the balance', () => {
+    describe('transacts with an amount that exceeds the balance', () => {
         beforeEach(() => {
         amount = 500;
         transaction = undefined;

@@ -75,7 +75,7 @@ describe('Wallet', () => {
         expect(wallet.currentBalance).toEqual(INITIAL_BALANCE + (addBalance * times));
         });
 
-        it('calculates the blaance for blockchain txs matching the sender', () => {
+        it('calculates the balance for blockchain txs matching the sender', () => {
         expect(senderWallet.currentBalance).toEqual(INITIAL_BALANCE - (addBalance * times));
         });
 

@@ -10,7 +10,7 @@ describe('Blockchain', () => {
         blockchainB = new Blockchain();
     });
 
-    it('every blockchain has a genesis blockchain', () => {
+    it('every blockchain has a genesis block', () => {
         const [genesisBlock] = blockchain.blocks;
 
         expect(genesisBlock).toEqual(Block.genesis);
@@ -33,7 +33,7 @@ describe('Blockchain', () => {
         expect(blockchain.blocks).toEqual(blockchainB.blocks);
     });
 
-    it('does not replace the chain with one with less blocks', () => {
+    it('does not replace the chain with one with fewer blocks', () => {
         blockchain.addBlock('block-1');
 
         expect(() => {
@@ -41,7 +41,7 @@ describe('Blockchain', () => {
         }).toThrowError('Received chain is not longer than current chain.');
     });
 
-    it('not replace the chain with one is not valid', () => {
+    it('does not replace the chain with one that is not valid', () => {
         blockchainB.addBlock('block-1');
         blockchainB.blocks[1].data = 'block-h4ck';
 

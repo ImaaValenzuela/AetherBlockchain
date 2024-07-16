@@ -11,7 +11,7 @@ describe('test difficulty()', () => {
         expect(adjustdifficulty(block, block.timestamp + 60000)).toEqual(block.difficulty - 1);
     });
 
-    it('increase the difficulty for quick mined blocks', () => {
+    it('increase the difficulty for quickly mined blocks', () => {
         expect(adjustdifficulty(block, block.timestamp + 1000)).toEqual(block.difficulty + 1);
     });
 })
